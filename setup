@@ -1,1 +1,54 @@
 #!/bin/sh
+
+# Install homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# and invite some of its friends along
+HOMEBREW_PACKAGES = ("cask" "rbenv" "elixir" "elm" "nvm" "postgresql" "mysql" "redis" "git" "openssl" "dnsmasq")
+for package in "${HOMEBREW_PACKAGES[@]}"
+do
+   :
+   brew install $package
+done
+
+# Use cask to install native OSX applications
+HOMEBREW_CASKROOM_PACKAGES = ("iterm2" "google-chrome" "firefox" "atom" "slack" "flux" "spectacle" "spotify" "lastpass" "private-internet-access" "postman")
+for package in "${HOMEBREW_CASKROOM_PACKAGES[@]}"
+do
+   :
+   brew cask install $package
+done
+
+# Configure the LastPass password manager
+/usr/local/Caskroom/lastpass/latest/LastPass\ Installer.app/Contents/MacOs/LastPass\ Installer
+
+# Configure the PrivateInternetAccess VPN
+/usr/local/Caskroom/private-internet-access/latest/Priavte\ Internet\ Access\ Installer.app/Contents/MacOs/runner.sh
+
+# Configure git
+git config --global user.name "Dan Murphy"
+git config --global user.email "murphydbuffalo@gmail.com"
+
+# Generate SSH public/private key pair (you should add these to github/bitbucket)
+ssh-keygen -t rsa -b 4096 -C "murphydbuffalo@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
+
+# Install Hex and Phoenix
+mix local.hex
+mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+
+# Deck out yo' terminal foo! (You'll need to do this again if you want to use Iterm2 instead of Terminal)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Configure rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
+echo 'eval("rbenv init -")' >> ~/.zshrc
+
+# Configure nvm
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | sh
+echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
+echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> ~/.zshrc
+
+source ~/.zshrc
