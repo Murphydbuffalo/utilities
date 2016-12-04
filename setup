@@ -4,7 +4,7 @@ echo "Installing homebrew..."
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo "and inviting some of its friends along..."
-HOMEBREW_PACKAGES = ("cask" "rbenv" "elixir" "elm" "nvm" "postgresql" "mysql" "redis" "git" "openssl" "dnsmasq")
+HOMEBREW_PACKAGES=("cask" "rbenv" "elixir" "elm" "nvm" "postgresql" "mysql" "redis" "git" "openssl" "dnsmasq")
 for package in "${HOMEBREW_PACKAGES[@]}"
 do
    :
@@ -12,7 +12,7 @@ do
 done
 
 echo "Use cask to install native OSX applications"
-HOMEBREW_CASKROOM_PACKAGES = ("iterm2" "google-chrome" "firefox" "atom" "slack" "flux" "spectacle" "spotify" "lastpass" "private-internet-access" "postman")
+HOMEBREW_CASKROOM_PACKAGES=("iterm2" "google-chrome" "firefox" "atom" "slack" "flux" "spectacle" "spotify" "lastpass" "private-internet-access" "postman")
 for package in "${HOMEBREW_CASKROOM_PACKAGES[@]}"
 do
    :
