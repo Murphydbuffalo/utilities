@@ -39,14 +39,16 @@ echo "Installing Hex and Phoenix..."
 mix local.hex
 mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
 
-echo "Decking out yo' Terminal foo! (You'll need to do this again if you want to use Iterm2 instead of Terminal)"
+echo "Decking out yo' Terminal foo!"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 echo "Configuring rbenv..."
+echo  "You'll need to do this again if you want to use Iterm2 instead of Terminal"
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
 echo 'eval("rbenv init -")' >> ~/.zshrc
 
 echo "Configuring nvm..."
+echo  "You'll need to do this again if you want to use Iterm2 instead of Terminal"
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | sh
 echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
 echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> ~/.zshrc
