@@ -4,7 +4,7 @@ echo "Installing homebrew..."
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo "and inviting some of its friends along..."
-HOMEBREW_PACKAGES=("cask" "rbenv" "elixir" "elm" "nvm" "postgresql" "mysql" "redis" "git" "openssl" "dnsmasq" "tree")
+HOMEBREW_PACKAGES=("cask" "rbenv" "elixir" "elm" "nvm" "postgresql" "mysql" "redis" "git" "openssl" "dnsmasq" "yarn" "tree")
 for package in "${HOMEBREW_PACKAGES[@]}"
 do
    :
@@ -52,5 +52,9 @@ echo  "You'll need to do this again if you want to use Iterm2 instead of Termina
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | sh
 echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
 echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> ~/.zshrc
+
+echo "Setting up`.vimrc` file..."
+touch ~/.vimrc
+curl https://raw.githubusercontent.com/amix/vimrc/master/vimrcs/basic.vim > ~/.vimrc
 
 source ~/.zshrc
